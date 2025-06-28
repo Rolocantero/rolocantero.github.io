@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CATALOGO</title>
+
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+
+    <!-- Font Awesome para iconos -->
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      rel="stylesheet"
+    />
+
+    <!-- Estilos personalizados -->
+    <style>
+      /* Variables CSS para colores */
+      :root {
+        --color-primario: #0b0c0e;
+        --color-secundario: #0c0c0c;
+        --color-fondo: #f8f9fa;
+      }
+
+      /* Estilos generales */
+      body {
+        background-color: var(--color-fondo);
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      }
+
+      /* Header */
+      .header {
+        background-color: rgb(253, 252, 252);
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        padding: 1rem 0;
+      }
+
+      /* Cards de productos */
+      .product-card {
+        background: rgb(223, 214, 214);
+        border-radius: 10px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease;
+        height: 100%;
+      }
+
+      .product-card:hover {
+        transform: translateY(-5px);
+      }
+
+      .product-image {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+        border-radius: 10px 10px 0 0;
+      }
+
+      .product-body {
+        padding: 1.5rem;
+      }
+
+      .product-title {
+        font-size: 1.2rem;
+        font-weight: 600;
+        color: #1e07f3;
+        margin-bottom: 0.5rem;
+      }
+
+      .product-description {
+        color: var(--color-secundario);
+        font-size: 0.9rem;
+        margin-bottom: 1rem;
+      }
+
+      .product-price {
+        font-size: 1.3rem;
+        font-weight: bold;
+        color: var(--color-primario);
+        margin-bottom: 1rem;
+      }
+
+      /* Botones */
+      .btn-catalogo {
+        background-color: var(--color-secundario);
+        border: none;
+        border-radius: 5px;
+        padding: 0.7rem 1.5rem;
+        color: rgb(246, 250, 246);
+        font-weight: 500;
+        transition: background-color 0.3s ease;
+      }
+
+      .btn-catalogo:hover {
+        background-color: #0be41d;
+        color: white;
+      }
+
+      /* Sección de filtros */
+      .filters-section {
+        background: rgb(9, 136, 221);
+        border-radius: 10px;
+        padding: 1.5rem;
+        margin-bottom: 2rem;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
+    </style>
+  </head>
+  <body>
+    <!-- HEADER -->
+    <header class="header">
+      <div class="container">
+        <div class="row align-items-center">
+          <div class="col-md-6">
+            <h1 class="h3 mb-0">
+              <i class="fas fa-store text-primary"></i>
+              MAJOKE_ONLINE
+            </h1>
+          </div>
+          <div class="col-md-6 text-end">
+            <button class="btn btn-success" onclick="verPedidosWhatsApp()">
+              <i class="fab fa-whatsapp"></i>
+              Ver Pedidos WhatsApp
+            </button>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- CONTENIDO PRINCIPAL -->
+    <main class="container my-4">
+      <!-- TÍTULO DE LA SECCIÓN -->
+      <div class="text-center mb-md-4">
+        <h2 style="font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; ;">CATALOGO DE LOS PRODUCTOS </h2>
+        <p class="text-muted">Descubre nuestra selección de productos</p>
+      </div>
+
+      <!-- SECCIÓN DE FILTROS -->
+      <div class="filters-section">
+        <div class="row">
+          <div class="col-md-4 mb-3">
+            <label for="searchInput" class="form-label"
+              >🔍 Buscar productos:</label
+            >
+            <input
+              type="text"
+              class="form-control"
+              id="searchInput"
+              placeholder="Ej: smartphone, auriculares..."
+            />
+          </div>
+          <div class="col-md-3 mb-3">
+            <label for="categoryFilter" class="form-label">📂 Categoría:</label>
+            <select class="form-select" id="categoryFilter">
+              <option value="">Todas las categorías</option>
+              <option value="electronica">📱 Electrónica</option>
+              <option value="ropa">👕 Ropa</option>
+              <option value="hogar">🏠 Hogar</option>
+              <option value="bebe">👶🏻 Bebe</option>
+              <option value="cociba">🧳 Cocina</option>
+              <option value="calzado">👟 Calzados</option>
+              <option value="informatica">🧑🏽‍💻 Informatica</option>
+            </select>
+          </div>
+          <div class="col-md-3 mb-3">
+            <label for="priceFilter" class="form-label">💰 Precio:</label>
+            <select class="form-select" id="priceFilter">
+              <option value="">Todos los precios</option>
+              <option value="bajo">Menos de $50</option>
+              <option value="medio">$50 - $100</option>
+              <option value="alto">Más de $100</option>
+            </select>
+          </div>
+          <div class="col-md-2 mb-3">
+            <label class="form-label">&nbsp;</label>
+            <button
+              class="btn btn-outline-light w-100"
+              onclick="limpiarFiltros()"
+            >
+              <i class="fas fa-eraser" ></i> Limpiar
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- GRID DE PRODUCTOS -->
+      <div class="row" id="productsGrid">
+        <!-- Los productos se cargarán dinámicamente aquí -->
+      </div>
+    </main>
+
+    <!-- MODAL PARA CONFIRMAR PEDIDO -->
+    <div class="modal fade" id="pedidoModal" tabindex="-1">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">
+              <i class="fab fa-whatsapp text-success"></i>
+              Confirmar Pedido por WhatsApp
+            </h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <div id="productoSeleccionado" class="mb-3">
+              <!-- Información del producto se carga aquí -->
+            </div>
+
+            <div class="mb-3">
+              <label for="cantidadProducto" class="form-label">Cantidad:</label>
+              <input
+                type="number"
+                class="form-control"
+                id="cantidadProducto"
+                value="1"
+                min="1"
+                max="10"
+              />
+            </div>
+
+            <div class="mb-3">
+              <label for="nombreCliente" class="form-label">Tu nombre:</label>
+              <input
+                type="text"
+                class="form-control"
+                id="nombreCliente"
+                placeholder="Ej: Juan Pérez"
+              />
+            </div>
+
+            <div class="mb-3">
+              <label for="comentarios" class="form-label"
+                >Comentarios adicionales (opcional):</label
+              >
+              <textarea
+                class="form-control"
+                id="comentarios"
+                rows="3"
+                placeholder="Especifica color, talla, o cualquier detalle especial..."
+              ></textarea>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+            >
+              Cancelar
+            </button>
+            <button
+              type="button"
+              class="btn btn-success"
+              onclick="enviarAWhatsApp()"
+            >
+              <i class="fab fa-whatsapp me-2"></i>
+              Enviar por WhatsApp
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- MODAL PARA VER PEDIDOS -->
+    <div class="modal fade" id="pedidosModal" tabindex="-1">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">
+              <i class="fab fa-whatsapp text-success"></i>
+              Pedidos Realizados
+            </h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <div id="listaPedidos" class="pedidos-lista">
+              <!-- Lista de pedidos se carga aquí -->
+            </div>
+            <div class="text-center mt-3">
+              <button class="btn btn-outline-danger" onclick="limpiarPedidos()">
+                <i class="fas fa-trash"></i>
+                Limpiar Lista
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="bg-dark text-white text-center py-4 mt-5">
+      <div class="container">
+        <p class="mb-0">© 2024 Mi Tienda. Todos los derechos reservados.</p>
+      </div>
+    </footer>
+
+    <!-- Bootstrap JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+
+    <!-- JavaScript personalizado -->
+    <script>
+        const NUMERO_WHATSAPP = "595973732410"; // Tu número aquí
+      // BASE DE DATOS DE PRODUCTOS
+      const productos = [
+        {
+          id: 1,
+          titulo: "Smartphone Android",
+          descripcion:
+            'Teléfono inteligente con pantalla de 6.5", 128GB de almacenamiento y cámara de 48MP.',
+          precio: 299.99,
+          categoria: "electronica",
+          imagen:
+            "https://platform.theverge.com/wp-content/uploads/sites/2/chorus/uploads/chorus_asset/file/25626687/DSC08433.jpg?quality=90&strip=all&crop=16.675%2C0%2C66.65%2C100&w=2400",
+        },
+        {
+          id: 2,
+          titulo: "Auriculares Bluetooth",
+          descripcion:
+            "Auriculares inalámbricos con cancelación de ruido y 20 horas de batería.",
+          precio: 89.99,
+          categoria: "electronica",
+          imagen:
+            "https://toptechnology.com.py/wp-content/uploads/2024/10/1142655-2.jpg",
+        },
+        {
+          id: 3,
+          titulo: "Camiseta Deportiva",
+          descripcion:
+            "Camiseta de algodón 100%, perfecta para deporte y uso casual.",
+          precio: 24.99,
+          categoria: "ropa",
+          imagen:
+            "https://cicadex.com/wp-content/uploads/2020/01/350-33-Camiseta-Hom-Azul-ped-27-3-4-RH-copia.jpg",
+        },
+        {
+          id: 4,
+          titulo: "Cafetera Eléctrica",
+          descripcion:
+            "Cafetera automática de 12 tazas con temporizador y placa calentadora.",
+          precio: 149.99,
+          categoria: "hogar",
+          imagen: "https://www.stock.com.py/images/thumbs/0166002.jpeg",
+        },
+        {
+          id: 5,
+          titulo: "Reloj Inteligente",
+          descripcion:
+            "Smartwatch con monitor de frecuencia cardíaca y GPS integrado.",
+          precio: 199.99,
+          categoria: "electronica",
+          imagen:
+            "https://www.compumarket.com.py/storage/sku/blulory-general-items-reloj-smartwatch-blulory-glifo-9-black-1-1-1718392930.jpg",
+        },
+        {
+          id: 6,
+          titulo: "Lámpara LED",
+          descripcion:
+            "Lámpara de escritorio con control táctil y múltiples niveles de brillo.",
+          precio: 39.99,
+          categoria: "hogar",
+          imagen: "https://megastar.com.py/257/lampara-led-de-embutir-ym24.jpg",
+        },
+        {
+          id: 7,
+          titulo: "Championes Adidas",
+          descripcion:
+            "Calzados comodos para todo tipo de terreno, estilo y durabilidad en una sola piez.",
+          precio: 100,
+          categoria: "calzado",
+          imagen:
+            "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRFrygsNWfGS3RM0v2_bGeUKc8C3J_3won6lg&s",
+        },
+        {
+          id: 8,
+          titulo: "Kit cubre camara para Bebe",
+          descripcion: "Conjunto para adornar la camara del bebe.",
+          precio: 159.99,
+          categoria: "bebe",
+          imagen:
+            "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT0RsEvLuF4y8eO2e-7rh_NBVHCAMkbLK5U7g&s",
+        },
+      ];
+
+      // FUNCIÓN PARA CREAR HTML DE PRODUCTO
+      function crearProductoHTML(producto) {
+        return `
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="product-card">
+                        <img src="${producto.imagen}" alt="${producto.titulo}" class="product-image">
+                        <div class="product-body">
+                            <h5 class="product-title">${producto.titulo}</h5>
+                            <p class="product-description">${producto.descripcion}</p>
+                            <div class="product-price">${producto.precio}</div>
+                            <button class="btn btn-catalogo w-100" onclick="pedirPorWhatsApp(${producto.id})">
+                                <i class="fab fa-whatsapp me-2"></i>
+                                Pedir por WhatsApp
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `;
+      }
+
+      // FUNCIÓN PARA MOSTRAR PRODUCTOS
+      function mostrarProductos(productosAMostrar) {
+        const grid = document.getElementById("productsGrid");
+
+        if (productosAMostrar.length === 0) {
+          grid.innerHTML = `
+                    <div class="col-12 text-center">
+                        <div class="alert alert-info">
+                            <i class="fas fa-search fa-2x mb-3"></i>
+                            <h4>No se encontraron productos</h4>
+                            <p>Intenta con otros términos de búsqueda o filtros diferentes.</p>
+                        </div>
+                    </div>
+                `;
+          return;
+        }
+
+        grid.innerHTML = productosAMostrar.map(crearProductoHTML).join("");
+      }
+
+      // FUNCIÓN PRINCIPAL DE FILTRADO
+      function filtrarProductos() {
+        const textoBusqueda = document
+          .getElementById("searchInput")
+          .value.toLowerCase();
+        const categoriaSeleccionada =
+          document.getElementById("categoryFilter").value;
+        const precioSeleccionado = document.getElementById("priceFilter").value;
+
+        const productosFiltrados = productos.filter((producto) => {
+          // Filtro por texto (busca en título y descripción)
+          const cumpleBusqueda =
+            producto.titulo.toLowerCase().includes(textoBusqueda) ||
+            producto.descripcion.toLowerCase().includes(textoBusqueda);
+
+          // Filtro por categoría
+          const cumpleCategoria =
+            !categoriaSeleccionada ||
+            producto.categoria === categoriaSeleccionada;
+
+          // Filtro por precio
+          let cumplePrecio = true;
+          if (precioSeleccionado) {
+            if (precioSeleccionado === "bajo") {
+              cumplePrecio = producto.precio < 50;
+            } else if (precioSeleccionado === "medio") {
+              cumplePrecio = producto.precio >= 50 && producto.precio <= 100;
+            } else if (precioSeleccionado === "alto") {
+              cumplePrecio = producto.precio > 100;
+            }
+          }
+
+          return cumpleBusqueda && cumpleCategoria && cumplePrecio;
+        });
+
+        mostrarProductos(productosFiltrados);
+
+        // Mostrar contador de resultados
+        actualizarContadorResultados(productosFiltrados.length);
+      }
+
+      // FUNCIÓN PARA MOSTRAR CONTADOR DE RESULTADOS
+      function actualizarContadorResultados(cantidad) {
+        const titulo = document.querySelector("main h2");
+        if (cantidad === productos.length) {
+          titulo.textContent = "Nuestros Productos";
+        } else {
+          titulo.textContent = `Productos encontrados: ${cantidad}`;
+        }
+      }
+
+      // FUNCIÓN PARA LIMPIAR FILTROS
+      function limpiarFiltros() {
+        document.getElementById("searchInput").value = "";
+        document.getElementById("categoryFilter").value = "";
+        document.getElementById("priceFilter").value = "";
+        filtrarProductos();
+      }
+
+      // FUNCIÓN PARA PEDIR POR WHATSAPP
+      function pedirPorWhatsApp(productoId) {
+        productoActual = productos.find((p) => p.id === productoId);
+
+        // Mostrar información del producto en el modal
+        document.getElementById("productoSeleccionado").innerHTML = `
+                <div class="card">
+                    <div class="card-body">
+                        <h6 class="card-title">${productoActual.titulo}</h6>
+                        <p class="card-text">${productoActual.descripcion}</p>
+                        <strong>Precio: $${productoActual.precio}</strong>
+                    </div>
+                </div>
+            `;
+
+        // Limpiar campos del modal
+        document.getElementById("cantidadProducto").value = 1;
+        document.getElementById("nombreCliente").value = "";
+        document.getElementById("comentarios").value = "";
+
+        // Mostrar modal
+        const modal = new bootstrap.Modal(
+          document.getElementById("pedidoModal")
+        );
+        modal.show();
+      }
+
+      // FUNCIÓN PARA ENVIAR A WHATSAPP
+      function enviarAWhatsApp() {
+        if (!productoActual) return;
+
+        const cantidad = document.getElementById("cantidadProducto").value;
+        const nombre = document.getElementById("nombreCliente").value;
+        const comentarios = document.getElementById("comentarios").value;
+
+        if (!nombre.trim()) {
+          alert("Por favor, ingresa tu nombre");
+          return;
+        }
+
+        // Crear mensaje para WhatsApp
+        const total = (productoActual.precio * cantidad).toFixed(2);
+        let mensaje = `🛒 *NUEVO PEDIDO*\n\n`;
+        mensaje += `👤 *Cliente:* ${nombre}\n`;
+        mensaje += `📱 *Producto:* ${productoActual.titulo}\n`;
+        mensaje += `💰 *Precio unitario:* $${productoActual.precio}\n`;
+        mensaje += `🔢 *Cantidad:* ${cantidad}\n`;
+        mensaje += `💵 *Total:* $${total}\n`;
+
+        if (comentarios.trim()) {
+          mensaje += `📝 *Comentarios:* ${comentarios}\n`;
+        }
+
+        mensaje += `\n¡Gracias por tu pedido! 😊`;
+
+        // Guardar pedido en el historial
+        guardarPedido({
+          fecha: new Date().toLocaleString(),
+          cliente: nombre,
+          producto: productoActual.titulo,
+          cantidad: cantidad,
+          precio: productoActual.precio,
+          total: total,
+          comentarios: comentarios,
+        });
+
+        // Crear URL de WhatsApp
+        const mensajeCodificado = encodeURIComponent(mensaje);
+        const urlWhatsApp = `https://wa.me/${NUMERO_WHATSAPP}?text=${mensajeCodificado}`;
+
+        // Abrir WhatsApp
+        window.open(urlWhatsApp, "_blank");
+
+        // Cerrar modal
+        const modal = bootstrap.Modal.getInstance(
+          document.getElementById("pedidoModal")
+        );
+        modal.hide();
+      }
+
+      // FUNCIÓN PARA GUARDAR PEDIDO EN EL HISTORIAL
+      function guardarPedido(pedido) {
+        let pedidos = JSON.parse(localStorage.getItem("pedidosWhatsApp")) || [];
+        pedidos.unshift(pedido); // Agregar al inicio
+
+        // Mantener solo los últimos 20 pedidos
+        if (pedidos.length > 20) {
+          pedidos = pedidos.slice(0, 20);
+        }
+
+        localStorage.setItem("pedidosWhatsApp", JSON.stringify(pedidos));
+      }
+
+      // FUNCIÓN PARA VER PEDIDOS DE WHATSAPP
+      function verPedidosWhatsApp() {
+        const pedidos =
+          JSON.parse(localStorage.getItem("pedidosWhatsApp")) || [];
+        const listaPedidos = document.getElementById("listaPedidos");
+
+        if (pedidos.length === 0) {
+          listaPedidos.innerHTML = `
+                    <div class="text-center text-muted">
+                        <i class="fas fa-inbox fa-3x mb-3"></i>
+                        <h5>No hay pedidos registrados</h5>
+                        <p>Los pedidos realizados aparecerán aquí</p>
+                    </div>
+                `;
+        } else {
+          listaPedidos.innerHTML = pedidos
+            .map(
+              (pedido) => `
+                    <div class="pedido-item">
+                        <div class="d-flex justify-content-between align-items-start">
+                            <div>
+                                <h6 class="mb-1">${pedido.producto}</h6>
+                                <p class="mb-1"><strong>Cliente:</strong> ${
+                                  pedido.cliente
+                                }</p>
+                                <p class="mb-1"><strong>Cantidad:</strong> ${
+                                  pedido.cantidad
+                                } | <strong>Total:</strong> $${pedido.total}</p>
+                                ${
+                                  pedido.comentarios
+                                    ? `<p class="mb-1"><strong>Comentarios:</strong> ${pedido.comentarios}</p>`
+                                    : ""
+                                }
+                                <small class="text-muted">${
+                                  pedido.fecha
+                                }</small>
+                            </div>
+                        </div>
+                    </div>
+                `
+            )
+            .join("");
+        }
+
+        // Mostrar modal
+        const modal = new bootstrap.Modal(
+          document.getElementById("pedidosModal")
+        );
+        modal.show();
+      }
+
+      // FUNCIÓN PARA LIMPIAR PEDIDOS
+      function limpiarPedidos() {
+        if (
+          confirm("¿Estás seguro de que quieres limpiar todos los pedidos?")
+        ) {
+          localStorage.removeItem("pedidosWhatsApp");
+          verPedidosWhatsApp(); // Actualizar la vista
+        }
+      }
+
+      // EVENTOS DE FILTRADO
+      document.addEventListener("DOMContentLoaded", function () {
+        // Mostrar todos los productos al cargar
+        mostrarProductos(productos);
+
+        // Eventos para filtros en tiempo real
+        document
+          .getElementById("searchInput")
+          .addEventListener("input", filtrarProductos);
+        document
+          .getElementById("categoryFilter")
+          .addEventListener("change", filtrarProductos);
+        document
+          .getElementById("priceFilter")
+          .addEventListener("change", filtrarProductos);
+      });
+    </script>
+  </body>
+</html>
