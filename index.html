@@ -109,6 +109,54 @@
     </style>
   </head>
   <body>
+    <nav id="barra" class="navbar navbar-expand-lg navbar-dark bg-primary">
+      <div class="container-fluid">
+        <a
+          class="navbar-brand"
+          style="
+            color: rgb(252, 251, 251);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif,
+              sans-serif;
+          "
+          href="#"
+          >mAjoK2_ONline</a
+        >
+
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarTogglerDemo01"
+          aria-controls="navbarTogglerDemo01"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+          <ul class="navbar-nav ms-auto" style="color: black">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="#inicio"
+                >Inicio</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#sobre-mi">Sobre Mí</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#proyectos">Servicios</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#habilidades">Habilidades</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#pedido">Pedidos</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
     <!-- HEADER -->
     <header class="header">
       <div class="container">
@@ -116,7 +164,7 @@
           <div class="col-md-6">
             <h1 class="h3 mb-0">
               <i class="fas fa-store text-primary"></i>
-              MAJOKE_ONLINE
+              MAJOK2_ONLINE
             </h1>
           </div>
           <div class="col-md-6 text-end">
@@ -302,11 +350,86 @@
         </div>
       </div>
     </div>
-
+<section id="pedido" class="py-5 bg-light">
+  <div class="container">
+    <!-- <h2 class="text-center mb-4">Contacto</h2> -->
+    <a
+      class="nav-link"
+      style="text-align: center; font-size: 250%"
+      href="#barra"
+      >Pedidos</a
+    >
+    <div class="row justify-content-center">
+      <div class="col-md-12">
+        <p class="text-center">
+          ¿Si necesitas de algun producto en Especifico y no este en nuestro catalogo dejanos un mensaje solicitando presupuesto!
+        </p>
+        <form action="https://formspree.io/f/meogzyqn" method="POST">
+          <div class="mb-3">
+            <label for="nombre" class="form-label"></label>
+            <input
+              type="text"
+              class="form-control"
+              id="nombre"
+              name="nombre"
+              placeholder="Ingresa tu nombre completo"
+              required
+            />
+          </div>
+          <div class="mb-3">
+            <label for="email" class="form-label"></label>
+            <input
+              type="email"
+              class="form-control"
+              id="email"
+              name="email"
+              placeholder="ejemplo@correo.com"  
+              required
+            />
+          </div>
+          <div class="mb-3">
+            <label for="telefono" class="form-label"></label>
+            <input
+              type="tel"
+              class="form-control"
+              id="telefono"
+              name="telefono"
+              placeholder="0981-123.456"
+              required
+            />
+          </div>
+          <div class="mb-3">
+            <label for="mensaje" class="form-label"></label>
+            <textarea
+              class="form-control"
+              id="mensaje"
+              name="mensaje"
+              rows="5"
+              placeholder="Describe el producto que necesitas o cualquier consulta..."
+              required
+            ></textarea>
+          </div>
+          
+          <button type="submit" class="btn btn-primary">
+            Enviar Mensaje
+          </button>
+          
+        </form>
+        <div class="mt-4 text-center">
+          <p>O puedes contactarme directamente a través de:</p>
+          <p>
+            <i class="bi bi-envelope-fill me-2"></i> rolocan2685@gmail.com
+          </p>
+          <p><i class="bi bi-phone-fill me-2"></i> 0973-448.931</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
     <!-- FOOTER -->
     <footer class="bg-dark text-white text-center py-4 mt-5">
       <div class="container">
-        <p class="mb-0">© 2024 Mi Tienda. Todos los derechos reservados.</p>
+        <p class="mb-0">© 2025_MAJOK2_ONLINE. Todos los derechos reservados.</p>
       </div>
     </footer>
 
